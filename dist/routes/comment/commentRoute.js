@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const express_joi_validation_1 = require("express-joi-validation");
+const auth_1 = require("../../middleware/auth/auth");
+const commentCtrl_1 = require("../../controllers/commentCtrl/commentCtrl");
+const router = (0, express_1.Router)();
+const validator = (0, express_joi_validation_1.createValidator)({});
+router.post("/comment", auth_1.isAuthenticated, commentCtrl_1.createComment);
+router.get("/comments/blog/:id", commentCtrl_1.getComment);
+exports.default = router;
